@@ -25,6 +25,6 @@ class ListarCentrosZonaView (generics.ListAPIView):
 class ListarCentrosNombreView (generics.ListAPIView):
     serializer_class = CentroAcopioEncargadoSerializer
     def get_queryset(self,*args,**kwargs):
-        querySet = CentroDeAcopio.objects.filter(nombre=self.kwargs['nombre'])
+        querySet = CentroDeAcopio.objects.filter(nombre__icontains=self.kwargs['nombre'])
         return (querySet)
 

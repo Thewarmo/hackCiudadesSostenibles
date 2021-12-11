@@ -11,21 +11,38 @@ class ProductoSerializer(serializers.ModelSerializer):
     def to_representation(self, obj):
         
         producto = Producto.objects.get(id=obj.id)
-        origen   = Usuario.objects.get(id=obj.origen)
-        destino  = Usuario.objects.get(id=obj.destino)
+        origen   = Usuario.objects.get(id=obj.origen_id)
         
-        return {
-            'id': producto.id,
-            'nombre': producto.nombre,
-            'estado': producto.estado,
-            'imagen': producto.imagen,
-            'peso': producto.peso,
-            'direccion': producto.direccion,
-            'disponible': producto.disponible,
-            'origen': {
-                'nomrbe':origen.nombre,
-                'telefono': origen.telefono,
-            },
-            'destino': destino.username
-        }
-
+        try:     
+            destino  = Usuario.objects.get(id=obj.destino_id)
+        
+            return {
+                'id': producto.id,
+                'nombre': producto.nombre,
+                'estado': producto.estado,
+                'imagen': producto.imagen,
+                'peso': producto.peso,
+                'direccion': producto.direccion,
+                'disponible': producto.disponible,
+                'origen': {
+                    'nombre':origen.nombre,
+                    'telefono': origen.telefono,
+                },
+                'destino': destino.username
+            }
+        except:
+                   
+            return {
+                'id': producto.id,
+                'nombre': producto.nombre,
+                'estado': producto.estado,
+                'imagen': producto.imagen,
+                'peso': producto.peso,
+                'direccion': producto.direccion,
+                'disponible': producto.disponible,
+                'origen': {
+                    'nombre':origen.nombre,
+                    'telefono': origen.telefono,
+                },
+                'destino': None
+            }

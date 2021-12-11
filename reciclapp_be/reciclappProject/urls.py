@@ -19,7 +19,7 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 from reciclApp.views.usuarioView   import CrearCentroAcopioView,CrearRecicladorView,CrearUsuarioView
 from reciclApp.views.centroAcopiView import ListarTodoCentrosView, ListarCentrosZonaView, ListarCentrosNombreView
 from reciclApp.views.recicladorView  import ListarTodoRecicladorView, ListarRecicladorMaterialView, ListarRecicladorZonaView
-from reciclApp.views.productoView    import CrearProductoView
+from reciclApp.views.productoView    import CrearProductoView, ListarTodoProductoView, ModificarProductoView, ListarProductosNombreView, ListarProductosOrigenView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,5 +34,9 @@ urlpatterns = [
     path('reciclador/list', ListarTodoRecicladorView.as_view()),
     path('reciclador/zona/<str:zona>', ListarRecicladorZonaView.as_view()),
     path('reciclador/categoria/<int:categoria>', ListarRecicladorMaterialView.as_view()),
-    path('producto/', CrearProductoView.as_view())
+    path('producto/', CrearProductoView.as_view()),
+    path('producto/list', ListarTodoProductoView.as_view()),
+    path('producto/update/<int:pk>', ModificarProductoView.as_view()),
+    path('producto/nombre/<str:nombre>', ListarProductosNombreView.as_view()),
+    path('producto/origen/<int:origen>', ListarProductosOrigenView.as_view())
 ]
