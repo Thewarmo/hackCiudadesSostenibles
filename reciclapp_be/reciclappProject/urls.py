@@ -15,7 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
+from reciclApp.views.usuarioView   import CrearCentroAcopioView,CrearRecicladorView,CrearUsuarioView
+from reciclApp.views.centroAcopiView import ListarTodoCentrosView, ListarCentrosZonaView, ListarCentrosNombreView
+from reciclApp.views.recicladorView  import ListarTodoRecicladorView, ListarRecicladorMaterialView, ListarRecicladorZonaView
+from reciclApp.views.productoView    import CrearProductoView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', TokenObtainPairView.as_view()),
+    path('refresh/', TokenRefreshView.as_view()),
+    path('signup/usuario/', CrearUsuarioView.as_view()),
+    path('signup/reciclador/', CrearRecicladorView.as_view()),
+    path('signup/centroacopio/', CrearCentroAcopioView.as_view()),
+    path('centroacopio/list', ListarTodoCentrosView.as_view()),
+    path('centroacopio/zona/<str:zona>', ListarCentrosZonaView.as_view()),
+    path('centroacopio/nombre/<str:nombre>', ListarCentrosNombreView.as_view()),
+    path('reciclador/list', ListarTodoRecicladorView.as_view()),
+    path('reciclador/zona/<str:zona>', ListarRecicladorZonaView.as_view()),
+    path('reciclador/categoria/<int:categoria>', ListarRecicladorMaterialView.as_view()),
+    path('producto/', CrearProductoView.as_view())
 ]

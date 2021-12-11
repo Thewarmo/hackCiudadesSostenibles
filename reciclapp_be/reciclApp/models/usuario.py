@@ -26,10 +26,10 @@ class Usuario (AbstractBaseUser, PermissionsMixin):
     id             = models.BigAutoField(primary_key=True)
     nombre         = models.CharField('Nombre', max_length = 30)
     username       = models.CharField('Username', max_length = 15, unique=True)
-    identificacion = models.IntegerField('Cedula', max_length = 15, unique=True)
+    identificacion = models.IntegerField('Cedula', unique=True)
     password       = models.CharField('Password', max_length = 256)
     correo         = models.EmailField('correo', max_length = 100)
-    telefono       = models.CharField ('telfono', null=False)
+    telefono       = models.CharField ('telfono',max_length=30, null=False)
     
     def save(self, **kwargs):
         some_salt = 'mMUj0DrIK6vgtdIYepkIxN'

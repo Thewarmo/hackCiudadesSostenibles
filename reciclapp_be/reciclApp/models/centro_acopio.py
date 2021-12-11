@@ -8,4 +8,4 @@ class CentroDeAcopio(models.Model):
     zona      = models.CharField('Zona', max_length = 50, null=False)
     direccion = models.CharField('Direccion', max_length = 50, null=False)
     telefono  = models.CharField('Encargado', max_length = 50, null=False)
-    encargado = models.ForeignKey(Usuario, related_name='encargado', null=False)
+    encargado = models.ForeignKey(Usuario, related_name='centroacopio', null=False, on_delete=models.CASCADE)

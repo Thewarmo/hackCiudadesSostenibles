@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from reciclApp.models import reciclador 
@@ -39,3 +40,32 @@ def recolector_detail_view(request,pk=None):
     elif request.method == 'DELETE':
         recolector.delete()
         return Response('Eliminando Recolector...')
+=======
+
+from rest_framework import status
+from rest_framework.response import Response
+from django.db.models.query import QuerySet
+from rest_framework                      import request, status, views, generics
+from reciclApp.models.reciclador import Reciclador 
+from reciclApp.serializers.recicladorSerializer import RecicladorSerializer, RecicladorUsuarioSerializer
+
+
+class ListarTodoRecicladorView (generics.ListAPIView):
+    serializer_class = RecicladorUsuarioSerializer
+    def get_queryset(self,*args,**kwargs):
+        querySet = Reciclador.objects.all()
+        return (querySet)
+
+class ListarRecicladorZonaView (generics.ListAPIView):
+    serializer_class = RecicladorUsuarioSerializer
+    def get_queryset(self,*args,**kwargs):
+        querySet = Reciclador.objects.filter(zona=self.kwargs['zona'])
+        return (querySet)
+
+class ListarRecicladorMaterialView (generics.ListAPIView):
+    serializer_class = RecicladorUsuarioSerializer
+    def get_queryset(self,*args,**kwargs):
+        querySet = Reciclador.objects.filter(categoria=self.kwargs['categoria'])
+        return (querySet)
+
+>>>>>>> a8d9f05544a6cb6516e7ce84553a8297e318e70d

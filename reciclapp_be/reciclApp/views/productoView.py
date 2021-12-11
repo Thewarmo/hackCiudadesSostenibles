@@ -2,8 +2,26 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
+<<<<<<< HEAD
 from reciclApp.models import Producto 
 from reciclApp.serializers import productoSerializer
+=======
+from reciclApp.models.producto import Producto 
+from reciclApp.serializers.productoSerializer import ProductoSerializer
+
+
+
+class CrearProductoView(APIView):
+    
+    def post(self, request, *args, **kwargs):
+        
+        serializer = ProductoSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+       
+        return Response("Producto Creado", status=status.HTTP_201_CREATED)
+    
+>>>>>>> a8d9f05544a6cb6516e7ce84553a8297e318e70d
 
 @api_view(['GET','POST'])
 def producto_api_view(request):
