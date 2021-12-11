@@ -1,0 +1,6 @@
+from centroAcopiView import centro_api_view
+from centroAcopiView import centro_detail_view
+from productoView import producto_api_view
+from productoView import producto_detail_view
+from recicladorView import recolector_api_view
+from recicladorView import recolector_detail_view

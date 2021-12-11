@@ -4,7 +4,7 @@ from reciclApp.models import reciclador
 from reciclApp.serializers import recicladorSerializer
 
 @api_view(['GET','POST'])
-def producto_api_view(request):
+def recolector_api_view(request):
     if request.method == 'GET':
         recolector = reciclador.objects.all()
         reciclador_serializer = recicladorSerializer(recolector,many=True)
@@ -18,7 +18,7 @@ def producto_api_view(request):
         return Response(reciclador_serializer.errors)
 
 @api_view(['GET','PUT','DELETE'])
-def producto_detail_view(request,pk=None):
+def recolector_detail_view(request,pk=None):
     try:
         recolector = reciclador.objects.get(pk=pk)
     except reciclador.DoesNotExist:
