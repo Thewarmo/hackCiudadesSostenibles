@@ -1,6 +1,6 @@
 from .categoriaSerializer     import CategoriaSerializer
-from .centroAcopioSerializer  import CentroAcopio
-from .productoSerializer      import Producto
-from .recicladorSerializer    import Reciclador
-from .solicitudSerializer     import Solicitud
-from .usuarioSerializer       import Usuario
+from .centroAcopioSerializer  import CentroAcopioSerializer
+from .productoSerializer      import ProductoSerializer
+from .recicladorSerializer    import RecicladorSerializer
+from .solicitudSerializer     import SolicitudSerializer
+from .usuarioSerializer       import UsuarioCentroSerializer, UsuarioSerializer, UsuarioRecicladorSerializer
