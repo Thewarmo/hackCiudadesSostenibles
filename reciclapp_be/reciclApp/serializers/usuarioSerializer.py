@@ -6,6 +6,7 @@ from reciclApp.models.reciclador                  import Reciclador
 from reciclApp.models.categoria                   import Categoria
 from reciclApp.serializers.centroAcopioSerializer import CentroAcopioSerializer
 from reciclApp.serializers.recicladorSerializer   import RecicladorSerializer
+from reciclApp.serializers.categoriaSerializer    import CategoriaSerializer
 
 class UsuarioSerializer(serializers.ModelSerializer):
     
@@ -18,11 +19,11 @@ class UsuarioCentroSerializer(serializers.ModelSerializer):
     centro = CentroAcopioSerializer()
     class Meta:
         model = Usuario
-        fields = ['id', 'username', 'password', 'nombre', 'correo', 'identificacion', 'telefono', 'centro_acopio']
+        fields = ['id', 'username', 'password', 'nombre', 'correo', 'identificacion', 'telefono', 'centro']
         
     def create(self, validated_data):
 
-        centroData = validated_data.pop('centro_acopio')
+        centroData = validated_data.pop('centro')
         usuarioInstance = Usuario.objects.create(**validated_data)
         CentroDeAcopio.objects.create(encargado=usuarioInstance, **centroData)
         return usuarioInstance
@@ -42,13 +43,14 @@ class UsuarioCentroSerializer(serializers.ModelSerializer):
                 'id': centro.id,
                 'nombre': centro.nombre,
                 'zona': centro.zona,
-                'direccuin': centro.direccion,
+                'direccion': centro.direccion,
                 'telefono': centro.telefono,
             }
         }
 
 class UsuarioRecicladorSerializer(serializers.ModelSerializer):
     reciclador = RecicladorSerializer()
+    
     class Meta:
         model = Usuario
         fields = ['id', 'username', 'password', 'nombre', 'correo', 'identificacion', 'telefono', 'reciclador']
