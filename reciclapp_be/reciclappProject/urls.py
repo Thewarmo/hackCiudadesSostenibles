@@ -20,6 +20,7 @@ from reciclApp.views.usuarioView   import CrearCentroAcopioView,CrearRecicladorV
 from reciclApp.views.centroAcopiView import ListarTodoCentrosView, ListarCentrosZonaView, ListarCentrosNombreView
 from reciclApp.views.recicladorView  import ListarTodoRecicladorView, ListarRecicladorMaterialView, ListarRecicladorZonaView
 from reciclApp.views.productoView    import CrearProductoView, ListarTodoProductoView, ModificarProductoView, ListarProductosNombreView, ListarProductosOrigenView
+from reciclApp.views.solicitudView   import CrearSolicitudView, ModificarSolicitudView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,5 +39,7 @@ urlpatterns = [
     path('producto/list', ListarTodoProductoView.as_view()),
     path('producto/update/<int:pk>', ModificarProductoView.as_view()),
     path('producto/nombre/<str:nombre>', ListarProductosNombreView.as_view()),
-    path('producto/origen/<int:origen>', ListarProductosOrigenView.as_view())
+    path('producto/origen/<int:origen>', ListarProductosOrigenView.as_view()),
+    path('solicitud/',  CrearSolicitudView.as_view()),
+    path('solicitud/update/<int:pk>', ModificarSolicitudView.as_view()),
 ]
